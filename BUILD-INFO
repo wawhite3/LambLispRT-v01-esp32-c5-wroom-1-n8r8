@@ -1,0 +1,17 @@
+# LambLisp release provenance
+env:            esp32-c5-wroom-1-n8r8
+git_commit:     a7d185b9a6ae5dcc12a09c46e64fa230127aa75e
+git_describe:   a7d185b
+git_branch:     master
+git_origin:     https://github.com/wawhite3/Lamb-v01.git
+tree_state:     clean -- this binary is reproducible from the commit above
+pushed_to_origin: 4 commit(s) ahead of origin/master
+build_utc:      2026-09-19 07:33:50 UTC
+build_host:     fisher
+build_stamp:    W3_SYSTEM_VERSION "1.01.1789803080"
+feature_flags:  -DLL_BOARD_NAME='"esp32-c5-wroom-1-n8r8"' -DLL_ESP_ARDUINO=1 -DLL_LITTLEFS=1 -DLL_WIFI=1 -DLL_BIGNUM=1 -DLL_RATIONAL=1 -DLL_COMPLEX=1 -DLL_PROFIBUS=1 -DLL_COMMONIO=1 -DLL_I2C=1 -DLL_WIRE=1 -DLL_SPI=1 -DLL_ONEWIRE=1 -DLL_WS2812=1 -DLL_SONAR=1 -DLL_LCD1602=1 -DLL_MODBUS=1 -DLL_ESP32=1 -DLL_RISCV32=1 -DLL_ESP32C5=1 -DLL_BOARD_NAME -DLL_BOARD_NAME -DLL_C5_PMP_RWX=1, 
+toolchain:      gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+manual_source:  /home/sir/src/Lamb-v01/doc/LambLisp.pdf
+manual_built_utc: 2026-09-19 06:02:20 UTC
+demo_source:    /home/sir/src/Lamb-v01/.pio/build-s92fedd71/wasm32_browser
+demo_built_utc: 2026-09-19 07:31:18 UTC
