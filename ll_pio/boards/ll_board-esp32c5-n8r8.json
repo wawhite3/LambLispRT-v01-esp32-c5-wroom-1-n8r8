@@ -1,0 +1,42 @@
+{
+    "_comment": "ESP32-C5-WROOM-1-N8R8 -- 8 MB flash, 8 MB quad PSRAM.  Used by envs esp32-c5-wroom-1-n8r8-00 and -01 (two physical units).  EXISTS BECAUSE N8R4 AND N8R8 ARE DIFFERENT BOARD TYPES AND MUST NOT SHARE A DEFINITION.  The pinned pioarduino platform (55.03.311) ships esp32-c5-devkitc-1, -n4, -n8r4 and -n16r4 -- no N8R8 -- so an N8R8 board has no stock definition to use and this file is it. || READ THIS BEFORE YOU DELETE IT AGAIN.  An earlier version of this comment justified the file with a MEASUREMENT THAT WAS FALSE: that building an N8R8 with the n8r4 definition 'silently gives the runtime half the PSRAM the board actually carries'.  It does not.  Verified on hardware 2026-09-11: an N8R8 board built against the stock n8r4 definition reports the full `PSRAM free: 7917236 / 8388608`.  NO BOARD JSON DECLARES A PSRAM SIZE -- there is no such field in this file or in any stock one -- because ESP-IDF sizes PSRAM by probing the chip at boot (B338). || SO WHY KEEP THE FILE?  Because a board definition NAMES A BOARD TYPE.  N8R4 and N8R8 are different hardware, and an N8R8 env declaring `board = esp32-c5-devkitc1-n8r4` is wrong in the record even when it is harmless in the bytes -- it misreports the part in build logs, in the `name` string, and to anything that reads `board` to infer memory.  The correct reason to keep a separate type is that it IS a separate type; the false reason was a mechanism that does not exist. Both can be true at once, and conflating them is how this file got marked obsolete on 2026-09-11 and then restored the same day. || WHAT IS ACTUALLY DIFFERENT HERE vs the stock n8r4 file: the `name` string, and `-DARDUINO_ESP32C5_DEV` in extra_flags.  Every other build-affecting field is identical, and that is EXPECTED, not a sign the file is redundant -- PSRAM size is simply not expressible here.",
+    "_psram_note": "QUAD, not octal.  The C5 has no octal PSRAM part: memory_type is qio_qspi and psram_type is qio. Do not copy the S3-EYE's qio_opi here -- the S3 is the only chip in this tree with octal PSRAM, and an opi setting on a quad part fails at PSRAM INIT, which presents as a boot loop rather than as a configuration error.  SIZE IS NOT SET HERE AND CANNOT BE: the 8 MB in this file's `name` is documentation of the hardware, not configuration.  It was measured off both boards, not read off a part number.",
+    "build": {
+        "arduino": {
+            "partitions": "w3_pio/partitions/partitions_8M_ota.csv",
+            "memory_type": "qio_qspi"
+        },
+        "core": "esp32",
+        "extra_flags": [
+            "-DARDUINO_ESP32C5_DEV",
+            "-DBOARD_HAS_PSRAM"
+        ],
+        "f_cpu": "240000000L",
+        "f_flash": "80000000L",
+        "flash_mode": "qio",
+        "psram_type": "qio",
+        "mcu": "esp32c5",
+        "variant": "esp32c5"
+    },
+    "connectivity": [
+        "bluetooth",
+        "wifi"
+    ],
+    "debug": {
+        "openocd_target": "esp32c5.cfg"
+    },
+    "frameworks": [
+        "arduino",
+        "espidf"
+    ],
+    "name": "Espressif ESP32-C5-WROOM-1-N8R8 (8 MB Flash Quad, 8 MB PSRAM Quad, RISC-V RV32)",
+    "upload": {
+        "flash_size": "8MB",
+        "maximum_ram_size": 327680,
+        "maximum_size": 8388608,
+        "require_upload_port": true,
+        "speed": 460800
+    },
+    "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c5/esp32-c5-devkitc-1/user_guide.html",
+    "vendor": "Espressif"
+}
